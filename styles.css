@@ -50,9 +50,28 @@ body {
 a { color: var(--accent); text-decoration: none }
 a:hover { text-decoration: underline }
 
-/* Ocultar por defecto elementos del menú móvil en escritorio */
-.menu-toggle { display: none; }
-.mobile-nav { display: none; }
+/* Menú: mostrar botón también en escritorio y usar el panel móvil en ambos */
+.menu-toggle { display: inline-flex; }
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: linear-gradient(180deg, #14141c, #101017);
+  box-shadow: 0 10px 24px var(--shadow);
+}
+.mobile-nav.show { display: flex; }
+.mobile-nav a {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: linear-gradient(180deg, #14141c, #101017);
+  color: var(--text);
+  text-decoration: none;
+}
 
 header {
   position: sticky;
@@ -199,24 +218,10 @@ footer {
   text-align: center;
 }
 
+/* Responsivo */
 @media (max-width: 980px) {
-  nav ul { display: none; }
+  nav ul { display: none; }           /* En móviles, ocultamos el menú de escritorio */
   .menu-toggle { display: inline-flex; }
-
-  .mobile-nav {
-    display: none; /* oculto hasta que se active con .show */
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .mobile-nav.show { display: flex; }
-
-  .mobile-nav a {
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xs);
-    background: linear-gradient(180deg, #14141c, #101017);
-  }
 
   .grid { grid-template-columns: 1fr; }
   .skills { grid-template-columns: 1fr 1fr; }
